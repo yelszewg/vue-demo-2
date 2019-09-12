@@ -21,6 +21,22 @@ export default {
     }
   },
 
+  mounted() {
+    setTimeout(()=>{
+      const todos = JSON.parse(localStorage.getItem('todos_key') || '[]')
+      this.todos = todos
+    },1000)
+  },
+
+  watch: {
+    todos: {
+      deep: true,
+      handler (val) {
+        localStorage.setItem('todos_key', JSON.stringify(val))
+      }
+    }
+  },
+
   methods: {
     addTodo (todo) {
       this.todos.unshift(todo)
