@@ -9,20 +9,24 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 export default {
-  
-  computed: {
-    ...mapState(['count']),
-    ...mapGetters(['evenOrOdd'])
+  mounted () {
+
   },
 
   methods: {
-    ...mapActions(['incrementIfOdd', 'incrementAsync']),
-    ...mapMutations({
-      increment: 'INCREMENT',
-      decrement: 'DECREMENT'
-    })
+    increment () {
+      this.$store.commit('INCREMENT')
+    },
+    decrement () {
+      this.$store.commit('DECREMENT')
+    },
+    incrementIfOdd () {
+      this.$store.dispatch('incrementIfOdd')
+    },
+    incrementAsync () {
+      this.$store.dispatch('incrementAsync')
+    }
   }
 }
 </script>
